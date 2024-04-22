@@ -16,17 +16,17 @@ export class SeriesComponent implements OnInit {
   getSeries() {
     this.serieService.getSeries().subscribe(series => {
       this.series = series;
-      this.promedio;
     });
   }
-  promedio(){
+  promedio(series: Serie[]){
     let cantidad: number = 0;
     let suma: number = 0;
-    this.series.forEach(serie => {
+    for(let serie of series) {
       suma += serie.seasons;
       cantidad += 1;
-    });
+    }
     this.average = suma/cantidad;
+    return this.average;
   }
 
   ngOnInit() {
